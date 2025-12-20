@@ -16,6 +16,8 @@ Route::get('/karyawan/delete/{id}', [App\Http\Controllers\KaryawanController::cl
 
 Route::get('/project',[App\Http\Controllers\ProjectController::class, 'index'])->name('project');
 
+Route::get('/pesanan', [App\Http\Controllers\PesananController::class, 'index'])->name('pesanan');
+
 
 
 Route::get('/produk', [App\Http\Controllers\UserProductController::class, 'index'])->name('produk');
