@@ -100,4 +100,38 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                          ->with('success', 'Produk Berhasil Dihapus');
     }
+
+    public function addToCart(Request $request)
+    {
+        $id = $request->id;
+        $product = \App\Models\Product::find($id); // Sesuaikan dengan nama Model Produk Anda
+
+        if(!$product) {
+            return response()->json(['status' => 'error', 'message' => 'Produk tidak ditemukan']);
+        }
+
+        $cart = session()->get('cart', []);
+
+        // Jika produk sudah ada di cart, update quantity
+        if(isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            // Jika belum ada, masukkan data baru
+            $cart[$id] = [
+                "name" => $product->nama_barang,
+                "quantity" => 1,
+                "price" => $product->harga_barang,
+                "image" => $product->image
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        // Kirim balikan jumlah total item ke frontend
+        return response()->json([
+            'status' => 'success', 
+            'total_items' => count($cart),
+            'message' => 'Berhasil ditambahkan ke keranjang!'
+        ]);
+    }
 }

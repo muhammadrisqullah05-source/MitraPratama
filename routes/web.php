@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,5 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Sesuaikan dengan nama controller Anda
+
+Route::post('/add-to-cart', [ProductController::class, 'addToCart'])->name('add.to.cart');
 
 require __DIR__.'/auth.php';
