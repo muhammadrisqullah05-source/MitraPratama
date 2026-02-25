@@ -3,10 +3,20 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateQuantity'])->name('cart.update');
+    Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    
 });
 
 Route::get('/karyawan', [App\Http\Controllers\KaryawanController::class, 'index'])->name('karyawan');
@@ -17,7 +27,13 @@ Route::get('/karyawan/delete/{id}', [App\Http\Controllers\KaryawanController::cl
 
 Route::get('/project',[App\Http\Controllers\ProjectController::class, 'index'])->name('project');
 
-Route::get('/pesanan', [App\Http\Controllers\PesananController::class, 'index'])->name('pesanan');
+Route::get('/data-pesanan', [App\Http\Controllers\OrderController::class, 'indexAdmin'])->name('data-pesanan');
+Route::patch('/data-pesanan/{id}/status', [OrderController::class, 'updateStatus'])->name('data-pesanan.updateStatus');
+Route::patch('/data-pesanan/{id}', [App\Http\Controllers\OrderController::class, 'updateStatus'])->name('data-pesanan.update');
+
+
+
+Route::get('/pesanan', [App\Http\Controllers\OrderController::class, 'index'])->name('pesanan');
 
 
 

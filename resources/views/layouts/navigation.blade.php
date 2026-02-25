@@ -2,10 +2,11 @@
 
 <nav x-data="{ open: false }" class="bg-white sticky top-0 z-50 shadow-sm border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-20"> <div class="flex">
+        <div class="flex justify-between h-20"> 
+            <div class="flex">
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}" class="transition transform hover:scale-105">
-                        <x-application-logo class="block h-10 w-auto fill-current text-blue-600" />
+                    <a href="{{ route('dashboard') }}" class="transition transform hover:scale-105 text-2xl font-extrabold italic tracking-wide text-gray-900">
+                        Mitra<span class="text-blue-600">Pratama</span>
                     </a>
                 </div>
 
@@ -20,14 +21,14 @@
                                 ['route' => 'karyawan', 'label' => 'Karyawan', 'icon' => 'users'],
                                 ['route' => 'project', 'label' => 'Project', 'icon' => 'briefcase'],
                                 ['route' => 'products.index', 'label' => 'Produk', 'icon' => 'package'],
-                                ['route' => 'pesanan', 'label' => 'Pesanan', 'icon' => 'shopping-bag'],
+                                ['route' => 'data-pesanan', 'label' => 'Pesanan', 'icon' => 'shopping-bag'],
                                 ['route' => 'datapelanggan', 'label' => 'User', 'icon' => 'user-plus'],
                             ];
                         } elseif($role == 'kasir') {
                             $menus = [
                                 ['route' => 'dashboard', 'label' => 'Dashboard', 'icon' => 'grid'],
                                 ['route' => 'project', 'label' => 'Project', 'icon' => 'briefcase'],
-                                ['route' => 'products.index', 'label' => 'Produk', 'icon' => 'package'],
+                                ['route' => 'produk', 'label' => 'Produk', 'icon' => 'package'],
                                 ['route' => 'pesanan', 'label' => 'Pesanan', 'icon' => 'shopping-bag'],
                             ];
                         } else {
@@ -50,16 +51,6 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6 space-x-4">
-                
-                <a href="/cart" class="relative p-2 text-gray-500 hover:text-blue-600 transition-colors duration-200 group">
-                    <i data-feather="shopping-cart" class="w-6 h-6"></i>
-                    @if(session('cart') && count(session('cart')) > 0)
-                        <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full shadow-sm group-hover:bg-red-600">
-                            {{ count(session('cart')) }}
-                        </span>
-                    @endif
-                </a>
-
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none transition duration-150 ease-in-out bg-gray-50 px-3 py-2 rounded-lg">

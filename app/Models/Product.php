@@ -13,4 +13,8 @@ class Product extends Model
         'nama_barang', 'detail','harga_barang','stock', 'image'
         
     ];
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
