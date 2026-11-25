@@ -249,7 +249,7 @@
         };
     </script>
 
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDasaE7B6aIWahyNYnKLe2ZxdKbFBuLU3A&loading=async&callback=initMap"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=&loading=async&callback=initMap"></script>
 
 </body>
 </html>
